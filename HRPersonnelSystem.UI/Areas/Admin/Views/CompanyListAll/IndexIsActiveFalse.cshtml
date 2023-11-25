@@ -1,0 +1,106 @@
+﻿@model IEnumerable<CompanyAllDTO>
+
+<style>
+    .card {
+        background: linear-gradient(to right, #E4E4D0, #EEE9DA, #E4E4D0);
+        color: #000000;
+    }
+
+    #rejectedExpendituresTable thead th {
+        color: black;
+    }
+
+    /* Yönetici Aktif butonunun rengi */
+    a.btn.btn-primary {
+        background-color: #94A684;
+        color: #000000;
+        transition: background-color 0.3s, color 0.3s;
+        border: 2px solid #94A684;
+    }
+
+        /* Yönetici Aktif butonunun hover efekti */
+        a.btn.btn-primary:hover {
+            background-color: #AEC3AE; /* Hover rengi değiştirildi */
+            color: #000000;
+            border: 2px solid #94A684;
+        }
+
+        /* Yönetici Pasif butonunun rengi */
+        a.btn.btn-primary[disabled] {
+            background-color: #94A684;
+            color: #000000;
+            transition: background-color 0.3s, color 0.3s;
+            border: 2px solid #94A684;
+        }
+
+            /* Yönetici Pasif butonunun hover efekti */
+            a.btn.btn-primary[disabled]:hover {
+                background-color: #AEC3AE;
+                color: #000000;
+                border: 2px solid #94A684;
+            }
+
+    table {
+        width: 100%;
+    }
+
+        table th, table td {
+            white-space: nowrap;
+        }
+</style>
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="mt-2">
+        <a asp-area="Admin" asp-controller="CompanyListAll" asp-action="IndexIsActiveTrue" type="submit" class="btn btn-primary me-2" > Şirket Aktif </a>
+        <a asp-area="Admin" asp-controller="CompanyListAll" asp-action="IndexIsActiveFalse" type="submit" class="btn btn-primary me-2" disabled> Şirket Pasif </a>
+    </div>
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> Şirket Listesi (Pasif) </span>
+    </h4>
+
+    <div class="card">
+        <div class="table-responsive text-nowrap m-3">
+
+            <table class="table table-bordered" id="rejectedExpendituresTable" width="100%" cellspacing="0">
+
+                <thead>
+                    <tr>
+                        <th>Şirket Adı</th>
+                        <th>Şirket Ünvanı</th>
+                        <th>Mersis Numarası</th>
+                        <th>Vergi Dairesi</th>
+                        <th>Vergi Numarası</th>
+                        <th>Telefon</th>
+                        <th>Adres</th>
+                        <th>E-posta</th>
+                        <th>Detaylar</th>
+                    </tr>
+                </thead>
+
+                <tbody class="table-border-bottom-0" style="color: black">
+
+                    @foreach (var company in Model)
+                    {
+                        <tr>
+                            <td>@company.CompanyName</td>
+                            <td>@company.CompanyTitle</td>
+                            <td>@company.MersisNumber</td>
+                            <td>@company.TaxOffice</td>
+                            <td>@company.TaxNumber</td>
+                            <td>@company.Phone</td>
+                            <td>@company.Address</td>
+                            <td>@company.Email</td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="Company" asp-action="Details" asp-route-id="@company.Id" class="btn btn-primary">Detay</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

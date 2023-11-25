@@ -1,0 +1,162 @@
+﻿@using HRPersonnelSystem.UI.Areas.Employee.Models.Enums;
+@model PermissionEntityDTO
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <style>
+
+        .btn.btn-primary {
+            background-color: #6096B4;
+            color: #000000;
+            transition: background-color 0.3s, color 0.3s;
+            border: 2px solid #6096B4;
+        }
+
+            /* Butonun hover efekti */
+            .btn.btn-primary:hover {
+                background-color: #93BFCF;
+                color: #000000;
+                border: 2px solid #6096B4;
+            }
+
+        .card {
+            background: linear-gradient(to right, #93BFCF, #A6D0DD, #93BFCF);
+            color: #000000;
+        }
+
+        
+    </style>
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> İzin Talebi Oluştur </span>
+    </h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <form asp-area="Employee" asp-controller="Permission" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <!-- Account -->
+                    <hr class="my-0">
+                    <div class="card-body">
+
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="row">
+
+                            <div class="mb-3 col-md-6">
+                                @if (Model.Gender == Gender.Erkek)
+                                {
+                                    <label asp-for="PermissionType" class="form-label" style="color: black">İZİN TÜRÜ</label>
+                                    <select asp-for="PermissionType" class="form-control" id="permissionType" asp-items="@Html.GetEnumSelectList<PermissionTypeMale>();" autofocus="" style="background-color: #EEE9DA;"></select>
+                                    <span asp-validation-for="PermissionType"></span>
+                                }
+                                else
+                                {
+                                    <label asp-for="PermissionType" class="form-label" style="color: black">İZİN TÜRÜ</label>
+                                    <select asp-for="PermissionType" class="form-control" id="permissionType" asp-items="@Html.GetEnumSelectList<PermissionTypeFemale>();" autofocus="" style="background-color: #EEE9DA;"></select>
+                                    <span asp-validation-for="PermissionType"></span>
+                                }
+                            </div>
+
+                            @{ Model.StartDate = DateTime.Now; }
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="StartDate" class="form-label" style="color: black">BAŞLANGIÇ TARİHİ</label>
+                                <input asp-for="StartDate" class="form-control" type="date" id="startDateInput" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="CountOfDay" class="form-label" style="color: black">GÜN SAYISI</label>
+                                <input asp-for="CountOfDay" class="form-control" id="countOfDay" type="number" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+
+                        </div>
+
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary me-2"> İzin Talebini Oluştur </button>
+                        </div>
+
+                        @* <div class="mt-2">
+                        <a asp-area="Employee" asp-controller="Permission" asp-action="Index" type="submit" class="btn btn-primary me-2"> Ana Sayfaya Dön </a>
+                        </div> *@
+
+                    </div>
+                    <!-- /Account -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        window.onload = function () {
+            // Bugünün tarihini al
+            var today = new Date().toISOString().split('T')[0];
+
+            // Bugünden 3 ay sonrasının tarihini hesapla
+            var maxDate = new Date();
+            maxDate.setMonth(maxDate.getMonth() + 3);
+            var threeMonthsLater = maxDate.toISOString().split('T')[0];
+
+            // StartDateInput elemanını al
+            var startDateInput = document.getElementById('startDateInput');
+
+            // StartDateInput'in en küçük ve en büyük değerlerini ayarla
+            startDateInput.setAttribute('min', today);
+            startDateInput.setAttribute('max', threeMonthsLater);
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sayfa yüklendiğinde, varsayılan olarak yıllık izin türünü seç
+            var permissionTypeDropdown = document.getElementById('permissionType');
+            permissionTypeDropdown.value = '7'; // 'Yillik' enum değerine göre belirlenmelidir
+
+            // Gün sayısını güncelle
+            updateCountOfDay();
+        });
+
+        // JavaScript fonksiyonu: İzin türü seçildiğinde gün sayısını güncelle
+        function updateCountOfDay() {
+            var permissionTypeDropdown = document.getElementById('permissionType');
+            var countOfDayInput = document.getElementById('countOfDay');
+
+            // Seçilen izin türüne göre gün sayısını güncelle
+            switch (permissionTypeDropdown.value) {
+                case '0':
+                    countOfDayInput.value = 21;
+                    countOfDayInput.readOnly = true;
+                    break;
+                case '1':
+                    countOfDayInput.value = 5;
+                    countOfDayInput.readOnly = true;
+                    break;
+                case '2':
+                    countOfDayInput.value = 70;
+                    countOfDayInput.readOnly = true;
+                    break;
+                case '3':
+                    countOfDayInput.value = 3;
+                    countOfDayInput.readOnly = true;
+                    break;
+                case '4':
+                    countOfDayInput.value = 3;
+                    countOfDayInput.readOnly = true;
+                    break;
+                case '5':
+                    countOfDayInput.value = 3;
+                    countOfDayInput.readOnly = true;
+                    break;
+                case '6':
+                    countOfDayInput.value = 10;
+                    countOfDayInput.readOnly = true;
+                    break;
+                 case '7':
+                    countOfDayInput.value = 1;
+                    countOfDayInput.readOnly = false;
+                    break;
+            }
+        }
+
+        // İzin türü dropdown'unun değişiklik olayını dinle
+        document.getElementById('permissionType').addEventListener('change', updateCountOfDay);
+    </script>
+}

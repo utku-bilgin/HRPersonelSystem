@@ -1,0 +1,162 @@
+﻿@model AdvancePaymentDTO
+<style>
+
+	/* Butonun arka plan rengini ve metin rengini belirleyin */
+	.btn.btn-primary {
+		background-color: #B9B4C7;
+		color: #000000;
+		transition: background-color 0.3s, color 0.3s;
+		border: 2px solid #7D6E83;
+	}
+
+		/* Butonun hover efekti */
+		.btn.btn-primary:hover {
+			background-color: #7D6E83;
+			color: #000000;
+			border: 2px solid #7D6E83;
+		}
+
+	.card {
+		background-color: #B9B4C7;
+		color: #000000;}
+</style>
+
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+	<h4 class="fw-bold py-3 mb-4">
+		<span class="text-muted fw-light">Avans Detayları </span>
+	</h4>
+
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card mb-4">
+
+
+
+				<form asp-area="CompanyDirector" asp-controller="Operation" asp-action="Edit" method="post" enctype="multipart/form-data">
+
+
+					<div class="ml-4 col-md-12">
+						<div class="btn-group m-4">
+
+							
+							<button asp-area="CompanyDirector" asp-controller="Operation" asp-action="Edit" id="editButton" name="buttonValue" value="true" type="submit" class="button tick"></button>
+
+
+
+							<button asp-area="CompanyDirector" asp-controller="Operation" asp-action="Edit" id="editButton"name="buttonValue" value="false" type="submit" class="button cross"></button>
+						</div>
+
+					</div>
+
+
+
+
+					<input type="hidden" asp-for="Id" />
+					<input type="hidden" asp-for="EmployeeId" />
+
+
+
+					<hr class="my-0">
+					<div class="card-body">
+						<div class="row">
+
+							<div class="mb-3 col-md-6 mt-3">
+								<label asp-for="FirstName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İSİM </label>
+								<input asp-for="FirstName" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" readOnly>
+							</div>
+
+							<div class="mb-3 col-md-6 mt-3">
+								<label asp-for="LastName" class="form-label" style="color: black"> <i class='bx bx-child'></i> SOYİSİM</label>
+								<input asp-for="LastName" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" readOnly>
+							</div>
+							<div class="mb-3 col-md-6 mt-3">
+								<label asp-for="Departman" class="form-label" style="color: black"> <i class='bx bx-child'></i> DEPARTMAN </label>
+								<input asp-for="Departman" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" readOnly>
+							</div>
+
+							<div class="mb-3 col-md-6 mt-3">
+								<label asp-for="AdvancePaymentType" class="form-label" style="color: black"> <i class='bx bx-child'></i> AVANS TİPİ </label>
+								<input asp-for="AdvancePaymentType" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" readOnly>
+							</div>
+
+
+
+							<div class="mb-3 col-md-6 mt-3">
+								<label asp-for="Amount" class="form-label" style="color: black"> <i class='bx bx-child'></i> Tutar </label>
+								<input asp-for="Amount" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" readOnly>
+							</div>
+
+							 
+
+							<div class="mb-3 col-md-6 mt-3">
+								<label asp-for="CurrencyUnit" class="form-label" style="color: black"> <i class='bx bx-child'></i>PARA BİRİMİ </label>
+								<input asp-for="CurrencyUnit" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" readOnly>
+							</div>
+
+
+
+							<div class="mb-3 col-md-6 my-3">
+								<label asp-for="RequestDate" class="form-label" style="color: black"> <i class='bx bx-child'></i> TALEP TARİHİ </label>
+								<input asp-for="RequestDate" class="form-control" type="date" autofocus="" style="background-color: #F7F1E5;" readOnly>
+							</div>
+
+
+
+							<div class="mb-3 col-md-6 my-3">
+								<label asp-for="Explain" class="form-label" style="color: black"> <i class='bx bx-child'></i> AÇIKLAMA </label>
+								<textarea asp-for="Explain" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" readOnly></textarea>
+							</div>
+
+
+
+						</div>
+					</div>
+
+
+
+					<div class="m-4 mt-2">
+						<a asp-area="CompanyDirector" asp-controller="Operation" asp-action="AdvancePayment" type="submit" class="btn btn-primary me-2"> Geri Dön </a>
+					</div>
+
+					
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" href="~/css/StyleSheet.css" />
+<script>
+	const barOuter = document.querySelector(".bar-outer");
+	const options = document.querySelectorAll(".bar-grey .option");
+	let current = 1;
+
+	options.forEach((option, i) => (option.index = i + 1));
+
+	options.forEach(option => option.addEventListener("click", function () {
+		barOuter.className = "bar-outer";
+		barOuter.classList.add(`pos${option.index}`);
+		if (option.index > current) {
+			barOuter.classList.add("right");
+		} else if (option.index < current) {
+			barOuter.classList.add("left");
+		}
+		current = option.index;
+	}));
+</script>
+<script>
+	document.getElementById("editButton").addEventListener("click", function () {
+		// Butona tıklandığında JavaScript kullanarak bool değeri true yapın.
+		// Örnek olarak bir global değişken kullanabilirsiniz:
+		window.isButtonClicked = true;
+	});
+</script>

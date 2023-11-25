@@ -1,0 +1,149 @@
+﻿@model AdvancePaymentDTO
+<style>
+    .btn.btn-danger {
+        background-color: #6096B4;
+        color: black;
+        transition: background-color 0.3s;
+        border: none;
+       
+        
+    }
+
+        .btn.btn-danger:hover {
+            background-color: red; /* Dokunulduğunda arka plan rengini kırmızı yap */
+        }
+
+    /* Butonun arka plan rengini ve metin rengini belirleyin */
+    /* Butonun arka plan rengini ve metin rengini belirleyin */
+    .btn.btn-primary {
+        background-color: #6096B4;
+        color: #000000;
+        transition: background-color 0.3s, color 0.3s;
+        border: 2px solid #6096B4;
+    }
+
+        /* Butonun hover efekti */
+        .btn.btn-primary:hover {
+            background-color: #93BFCF;
+            color: #000000;
+            border: 2px solid #6096B4;
+        }
+
+    .card {
+        background: linear-gradient(to right, #93BFCF, #A6D0DD, #93BFCF);
+        color: #000000;
+    }
+</style>
+
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+    <div style="height:80px;"></div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+
+
+
+                <form asp-area="Employee" asp-controller="AdvancePayment" asp-action="Delete" method="post" enctype="multipart/form-data">
+
+
+
+                    <h4 class="card-header"> <i class='bx bxs-user-circle'></i> Avans talebini silmek istediğinizden emin misiniz? </h4>
+
+
+
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-danger me-2" style="margin-right: 20px;"> Avans Talebini Sil </button>
+                    </div>
+
+
+
+                    <input type="hidden" asp-for="Id" />
+
+
+
+                    <hr class="my-0">
+                    <div class="card-body">
+                        <div class="row">
+
+
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="AdvancePaymentType" class="form-label" style="color: black"> <i class='bx bx-child'></i> AVANS TİPİ </label>
+                                <input asp-for="AdvancePaymentType" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="Amount" class="form-label" style="color: black"> <i class='bx bx-child'></i> Tutar </label>
+                                <input asp-for="Amount" class="form-control" type="number" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="CurrencyUnit" class="form-label" style="color: black"> <i class='bx bx-child'></i>PARA BİRİMİ </label>
+                                <input asp-for="CurrencyUnit" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="RequestDate" class="form-label" style="color: black"> <i class='bx bx-child'></i> TALEP TARİHİ </label>
+                                <input asp-for="RequestDate" class="form-control" type="date" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="ApprovalStatus" class="form-label" style="color: black"> <i class='bx bx-child'></i> Onay Durumu </label>
+                                <input asp-for="ApprovalStatus" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="mt-2">
+                        <a asp-area="Employee" asp-controller="AdvancePayment" asp-action="UncertainAdvancePayment" type="submit" class="btn btn-primary me-2" style="margin-right: 20px;"> Geri Dön </a>
+                    </div>
+
+                    <style>
+
+                        /* Butonun arka plan rengini ve metin rengini belirleyin */
+                        .btn.btn-primary {
+                            background-color: #6096B4;
+                            color: #000000;
+                            transition: background-color 0.3s, color 0.3s;
+                            border: none;
+                        }
+
+                            /* Butonun hover efekti */
+                            .btn.btn-primary:hover {
+                                background-color: #EEE9DA;
+                                color: #000000;
+                            }
+
+                        .card.mb-4 {
+                            background-color: #93BFCF;
+                            color: #000000;
+                        }
+                    </style>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

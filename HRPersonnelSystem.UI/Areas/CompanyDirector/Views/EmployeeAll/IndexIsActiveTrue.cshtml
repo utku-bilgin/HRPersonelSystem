@@ -1,0 +1,97 @@
+﻿@model IEnumerable<EmployeeAllDTO>
+
+<style>
+    .btn.btn-primary {
+        background-color: #B9B4C7;
+        color: #000000;
+        transition: background-color 0.3s, color 0.3s;
+        border: 2px solid #7D6E83;
+    }
+
+        /* Butonun hover efekti */
+        .btn.btn-primary:hover {
+            background-color: #7D6E83;
+            color: #000000;
+            border: 2px solid #7D6E83;
+        }
+
+    .card {
+        background: linear-gradient(to right, #B9B4C7, #EEE9DA, #B9B4C7);
+        color: #000000;
+    }
+
+    #rejectedExpendituresTable thead th {
+        color: black;
+    }
+
+    table {
+        width: 100%;
+        background-color: #B9B4C7;
+        border-collapse: collapse;
+    }
+
+        table th, table td {
+            white-space: nowrap; /* Hücre içeriğini sığdır */
+        }
+</style>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="mt-2">
+        <a asp-area="CompanyDirector" asp-controller="EmployeeAll" asp-action="IndexIsActiveTrue" type="submit" class="btn btn-primary me-2" disabled> Personel Aktif </a>
+        <a asp-area="CompanyDirector" asp-controller="EmployeeAll" asp-action="IndexIsActiveFalse" type="submit" class="btn btn-primary me-2"> Personel Pasif </a>
+    </div>
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">
+            Aktif Personel Listesi
+        </span>
+    </h4>
+
+    <div class="card">
+        <div class="table-responsive text-nowrap m-3">
+            <table class="table table-bordered" id="rejectedExpendituresTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>AD</th>
+                        <th>SOYAD</th>
+                        <th>TC KİMLİK NO</th>
+                        <th>DEPARTMAN</th>
+                        <th>MESLEK</th>
+                        <th>TELEFON NUMARASI</th>
+                        <th>İŞE BAŞLAMA TARİHİ</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0" style="color: black">
+                    @foreach (var employee in Model)
+                    {
+                        <tr>
+                            <td>@employee.FirstName 
+                                @{
+                                    if(employee.MiddleName != null)
+                                    {
+                                        @employee.MiddleName
+                                    
+                                    }
+                                }
+                            </td>
+                            <td>@employee.LastName
+                                @{
+                                    if (employee.SecondLastName != null)
+                                    {
+                                        @employee.SecondLastName
+
+                                    }
+                                }
+                            </td>
+                            <td>@employee.TCNumber</td>
+                            <td>@employee.Department</td>
+                            <td>@employee.Job</td>
+                            <td>@employee.PhoneNumber</td>
+                            <td>@employee.DateOfHire.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

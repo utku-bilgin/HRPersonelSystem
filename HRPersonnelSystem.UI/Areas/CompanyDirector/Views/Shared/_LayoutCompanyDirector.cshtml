@@ -1,0 +1,279 @@
+﻿<html lang="en" class="light-style layout-menu-fixed " dir="ltr" data-theme="theme-default" data-template="vertical-menu-template-free">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Şirket Yöneticisi Paneli</title>
+
+    <meta name="description" content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
+    <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/sneat/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    @* CSS için CDN *@
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="~/sneat/assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/sneat/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="~/sneat/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="~/sneat/assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="~/sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <link rel="stylesheet" href="~/sneat/assets/vendor/libs/apex-charts/apex-charts.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="~/sneat/assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="~/sneat/assets/js/config.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    <!-- Custom notification for demo -->
+    <!-- beautify ignore:end -->
+
+</head>
+<style>
+
+
+    .btn.btn-primary {
+        background-color: #7D6E83;
+        color: #000000;
+        transition: background-color 0.3s, color 0.3s;
+        border: none;
+    }
+
+
+        .btn.btn-primary:hover {
+            background-color: #EEE9DA;
+            color: #000000;
+        }
+
+    .card.mb-4 {
+        background-color: #EEE9DA;
+        color: #000000;
+    }
+
+    #layout-menu {
+        background-color: #EEE9DA !important;
+    }
+
+    body {
+        background-color: #EEE9DA;
+    }
+
+    .gradient-background {
+        background: linear-gradient(to bottom,#EEE9DA, #7D6E83);
+    }
+
+    .menu-link i {
+        margin-right: 10px
+    }
+</style>
+<body>
+
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar  ">
+        <div class="layout-container">
+
+            <!-- Menu -->
+
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+
+                <div class="d-flex justify-content-center">
+                    <a asp-area="CompanyDirector" asp-controller="CompanyDirector" asp-action="Index">
+                        <img src="~/images/İNKASİS - Copy.png" height="250px" width="250px">
+                    </a>
+                </div>
+
+                <div class="menu-inner-shadow"></div>
+
+                <ul class="menu-inner py-1 gradient-background">
+
+                    <!-- Dashboard -->
+                    <li class="menu-item">
+                        <a asp-area="CompanyDirector" asp-controller="CompanyDirector" asp-action="Index" class="menu-link">
+                            <i class='bx bxs-home-heart'></i>
+                            <div data-i18n="Analytics" style="color: black"> Ana Sayfa </div>
+                        </a>
+                    </li>
+                   
+
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">ONAY İŞLEMLERİ</span></li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bxs-detail"></i>
+                            <div data-i18n="Account Settings" style="color: black"> Talepler </div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a asp-area="CompanyDirector" asp-controller="Operation" asp-action="Permission" class="menu-link">
+                                    <div data-i18n="Account" style="color: black"> İzin Talepleri </div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-area="CompanyDirector" asp-controller="Operation" asp-action="Expenditure" class="menu-link">
+                                    <div data-i18n="Account" style="color: black"> Harcama Talepleri </div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-area="CompanyDirector" asp-controller="Operation" asp-action="AdvancePayment" class="menu-link">
+                                    <div data-i18n="Account" style="color: black"> Avans Talepleri </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Personeller</span></li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bxs-credit-card-alt"></i>
+                            <div data-i18n="Account Settings" style="color: black"> Personel İşlemleri </div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a asp-area="CompanyDirector" asp-controller="EmployeeCreate" asp-action="Create" class="menu-link">
+                                    <div data-i18n="Account" style="color: black"> Personel Oluştur </div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-area="CompanyDirector" asp-controller="EmployeeAll" asp-action="IndexIsActiveTrue" class="menu-link">
+                                    <div data-i18n="Account" style="color: black"> Personel Listesi </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </aside>
+            <!-- / Menu -->
+            <!-- Layout container -->
+
+            <div class="layout-page">
+
+                <!-- Navbar -->
+                <style>
+                    .bg-navbar-theme {
+                        background: linear-gradient(45deg, #EEE9DA, #7D6E83);
+                    }
+                </style>
+
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="bx bx-menu bx-sm"></i>
+                        </a>
+                    </div>
+
+
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+                        <!-- Search -->
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item d-flex align-items-center">
+                                @* <i class="bx bx-search fs-4 lh-0"></i>
+                                <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..."> *@
+                            </div>
+                        </div>
+                        <!-- /Search -->
+
+
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+
+                            <!-- Place this tag where you want the button to render. -->
+                            @* <li class="nav-item lh-1 me-3">
+                            <a class="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
+                            </li> *@
+
+                            <!-- User -->
+                            @* VIEW COMPONENT kullanmak için *@
+                            @await Component.InvokeAsync("CompanyDirectorDashboardHeader")
+
+                            <!--/ User -->
+
+                        </ul>
+                    </div>
+
+                </nav>
+
+                <!-- / Navbar -->
+                <!-- Content wrapper -->
+                @RenderBody()
+
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+
+    </div>
+    <!-- / Layout wrapper -->
+    @* <div class="buy-now">
+    <a href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/" target="_blank" class="btn btn-danger btn-buy-now">Upgrade to Pro</a>
+    </div> *@
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="~/sneat/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/sneat/assets/vendor/libs/popper/popper.js"></script>
+    <script src="~/sneat/assets/vendor/js/bootstrap.js"></script>
+    <script src="~/sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    @* JS için CDN *@
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.3/js/dataTables.buttons.min.js" crossorigin="anonymous"></script>
+
+    <script src="~/sneat/assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <script src="~/sneat/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/sneat/assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="~/sneat/assets/js/dashboards-analytics.js"></script>
+
+    @* Article/Index.cshtml içine yazdığımız script'i çalıştırmak için *@
+    @await RenderSectionAsync("Scripts", false);
+
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

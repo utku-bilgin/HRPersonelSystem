@@ -1,0 +1,174 @@
+﻿@model CompanyDirectorDTO
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <style>
+        /* Butonun arka plan rengini ve metin rengini belirleyin */
+        .btn.btn-primary {
+            background-color: #B9B4C7;
+            color: #000000;
+            transition: background-color 0.3s, color 0.3s;
+            border: 2px solid #7D6E83;
+        }
+
+            /* Butonun hover efekti */
+            .btn.btn-primary:hover {
+                background-color: #7D6E83;
+                color: #000000;
+                border: 2px solid #7D6E83;
+            }
+
+        .card.mb-4 {
+            background: linear-gradient(to right, #B9B4C7, #EEE9DA, #B9B4C7);
+            color: #000000;
+        }
+    </style>
+    @* <div style="height:80px;"></div> *@
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">Profil Ayarları /</span> Profil Detayları
+    </h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+
+                <h5 class="card-header"> <i class='bx bxs-user-circle'></i> @Model.FirstName @Model.LastName İsimli Şirket Yöneticisinin Detay Bilgileri </h5>
+
+                <div class="mt-2 m-4">
+                    <a asp-area="CompanyDirector" asp-controller="CompanyDirector" asp-action="Edit" asp-route-id="@Model.Id" type="submit" class="btn btn-primary me-2"> Profili Güncelle </a>
+                </div>
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <div>
+                            <img src="~/images/@Model.ImagePath" class="height="100px" width="100px" id="uploadedAvatar">
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="my-0">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="mb-3 col-md-6 mt-3">
+                            <label asp-for="FirstName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İSİM </label>
+                            <input asp-for="FirstName" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        @if(Model.MiddleName != null)
+                        {
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="MiddleName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İKİNCİ İSİM </label>
+                                <input asp-for="MiddleName" class="form-control" type="text" placeholder="Personelin ikinci ismi yoktur." autofocus="" style="background-color: #F7F1E5;" disabled>
+                            </div>
+                        }
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="LastName" class="form-label" style="color: black"> <i class='bx bx-child'></i> SOYİSİM </label>
+                            <input asp-for="LastName" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        @if (Model.SecondLastName != null)
+                        {
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="SecondLastName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İKİNCİ SOYİSİM </label>
+                                <input asp-for="SecondLastName" class="form-control" type="text" placeholder="Personelin ikinci soyismi yoktur." autofocus="" style="background-color: #F7F1E5;" disabled>
+                            </div>
+                        }
+                       @*  <div class="mb-3 col-md-6">
+                            <label asp-for="Gender" class="form-label" style="color: black">Cinsiyet</label>
+                            <div>
+                                @foreach (var genderOption in Enum.GetValues(typeof(Gender)))
+                                {
+                                    <label>
+                                        <input type="radio" asp-for="Gender" value="@genderOption" disabled>
+                                        @genderOption
+                                    </label>
+                                }
+                            </div>
+                        </div> *@
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="BirthDate" class="form-label" style="color: black"> <i class='bx bx-child'></i> DOĞUM TARİHİ </label>
+                            <input asp-for="BirthDate" class="form-control" type="date" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="BirthPlace" class="form-label" style="color: black"> <i class='bx bx-child'></i> DOĞUM YERİ </label>
+                            <input asp-for="BirthPlace" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="DateOfHire" class="form-label" style="color: black"> <i class='bx bx-child'></i> İŞE GİRİŞ TARİHİ </label>
+                            <input asp-for="DateOfHire" class="form-control" type="date" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        @if (Model.IsActive == false)
+                        {
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="DateOfTermination" class="form-label" style="color: black"> <i class='bx bx-child'></i> İŞTEN ÇIKIŞ TARİHİ </label>
+                                <input asp-for="DateOfTermination" class="form-control" placeholder="Personel firmada çalışmaya devam etmektedir." type="date" autofocus="" style="background-color: #F7F1E5;" disabled>
+                            </div>
+                        }
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="TCNumber" class="form-label" style="color: black"> <i class='bx bx-child'></i> TC KİMLİK NUMARASI </label>
+                            <input asp-for="TCNumber" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="IsActive" class="form-label" style="color: black"> <i class='bx bx-child'></i> AKTİFLİK DURUMU </label>
+                            @if (Model.IsActive)
+                            {
+                                <input asp-for="IsActive" class="form-control" type="text" value="Aktif" style="background-color: #F7F1E5;" disabled>
+                            }
+                            else
+                            {
+                                <input asp-for="IsActive" class="form-control" type="text" value="Aktif Değil" style="background-color: #F7F1E5;" disabled>
+                            }
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="Job" class="form-label" style="color: black"> <i class='bx bx-child'></i> MESLEK </label>
+                            <input asp-for="Job" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="Department" class="form-label" style="color: black"> <i class='bx bx-child'></i> DEPARTMAN </label>
+                            <input asp-for="Department" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="CompanyName" class="form-label" style="color: black"> <i class='bx bx-child'></i> ŞİRKET İSMİ </label>
+                            <input asp-for="CompanyName" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="Email" class="form-label" style="color: black"> <i class='bx bx-child'></i> EMAİL </label>
+                            <input asp-for="Email" class="form-control" type="email" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="PhoneNumber" class="form-label" style="color: black"> <i class='bx bx-child'></i> TELEFON NUMARASI </label>
+                            <input asp-for="PhoneNumber" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="Address" class="form-label " style="color: black"> <i class='bx bxs-child'></i> ADRES </label>
+                            <textarea asp-for="Address" class="form-control" type="text" autofocus="" style="background-color: #F7F1E5;" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                @* <div class="mt-2">
+                    <a asp-area="CompanyDirector" asp-controller="CompanyDirector" asp-action="Index" type="submit" class="btn btn-primary me-2"> Ana Sayfaya Dön </a>
+                </div> *@
+
+            </div>
+        </div>
+    </div>
+</div>

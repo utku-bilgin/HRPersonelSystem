@@ -1,0 +1,126 @@
+﻿@model IEnumerable<CompanyDirectorListAllDTO>
+
+
+
+<style>
+    .card {
+        background: linear-gradient(to right, #E4E4D0, #EEE9DA, #E4E4D0);
+        color: #000000;
+    }
+
+
+
+    #rejectedExpendituresTable thead th {
+        color: black;
+    }
+
+
+    a.btn.btn-primary {
+        background-color: #94A684;
+        color: #000000;
+        transition: background-color 0.3s, color 0.3s;
+        border: 2px solid #94A684;
+    }
+
+        /* Yönetici Aktif butonunun hover efekti */
+        a.btn.btn-primary:hover {
+            background-color: #AEC3AE; /* Hover rengi değiştirildi */
+            color: #000000;
+            border: 2px solid #94A684;
+        }
+
+        /* Yönetici Pasif butonunun rengi */
+        a.btn.btn-primary[disabled] {
+            background-color: #94A684;
+            color: #000000;
+            border: 2px solid #94A684;
+        }
+
+            /* Yönetici Pasif butonunun hover efekti */
+            a.btn.btn-primary[disabled]:hover {
+                background-color: #AEC3AE;
+                color: #000000;
+                border: 2px solid #94A684;
+            }
+
+
+
+
+    table {
+        width: 100%;
+    }
+
+
+
+        table th, table td {
+            white-space: nowrap;
+        }
+</style>
+
+
+
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+    <div class="mt-2">
+        <a asp-area="Admin" asp-controller="CompanyDirectorListAll" asp-action="IndexIsActiveTrue" type="submit" class="btn btn-primary me-2" disabled> Yönetici Aktif </a>
+        <a asp-area="Admin" asp-controller="CompanyDirectorListAll" asp-action="IndexIsActiveFalse" type="submit" class="btn btn-primary me-2"> Yönetici Pasif </a>
+    </div>
+
+
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> Aktif Yönetici Listesi  </span>
+    </h4>
+
+
+
+    <div class="card">
+        <div class="table-responsive text-nowrap m-3">
+
+
+
+            <table class="table table-bordered" id="rejectedExpendituresTable" width="100%" cellspacing="0">
+
+
+
+                <thead>
+                    <tr>
+                        <th>Ad</th>
+                        <th>İkinci Ad</th>
+                        <th>Soyad</th>
+                        <th>İkinci Soyad</th>
+                        <th>TC Kimlik Numarası</th>
+                        <th>Cinsiyet</th>
+                        <th>Şirket Adı</th>
+                        <th>Adres</th>
+                    </tr>
+                </thead>
+
+
+
+                <tbody class="table-border-bottom-0" style="color: black">
+
+
+
+                    @foreach (var companyDirector in Model)
+                    {
+                        <tr>
+                            <td>@companyDirector.FirstName</td>
+                            <td>@companyDirector.MiddleName</td>
+                            <td>@companyDirector.LastName</td>
+                            <td>@companyDirector.SecondLastName</td>
+                            <td>@companyDirector.TCNumber</td>
+                            <td>@companyDirector.Gender</td>
+                            <td>@companyDirector.CompanyName</td>
+                            <td>@companyDirector.Address</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

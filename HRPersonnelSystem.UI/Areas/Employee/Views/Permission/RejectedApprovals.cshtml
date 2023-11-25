@@ -1,0 +1,81 @@
+﻿@using HRPersonnelSystem.UI.Areas.Employee.Models.Enums;
+@model List<PermissionEntityDTO>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <style>
+        .btn.btn-primary {
+            background-color: #6096B4;
+            color: #000000;
+            transition: background-color 0.3s, color 0.3s;
+            border: 2px solid #6096B4;
+        }
+
+            /* Butonun hover efekti */
+            .btn.btn-primary:hover {
+                background-color: #93BFCF;
+                color: #000000;
+                border: 2px solid #6096B4;
+            }
+
+        .card {
+            background: linear-gradient(to right, #93BFCF, #A6D0DD, #93BFCF);
+            color: #000000;
+        }
+
+        #rejectedApprovalsTable thead th {
+            color: black;
+        }
+
+
+    </style>
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> İzin Talepleri /</span> Reddedilen İzinler
+    </h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <div class="table-responsive text-nowrap m-3">
+
+            <table class="table table-bordered" id="rejectedApprovalsTable" width="100%" collspacing="0">
+                <thead>
+                    <tr>
+                        <th>İZİN TÜRÜ</th>
+                        <th>BAŞLANGIÇ TARİHİ</th>
+                        <th>BİTİŞ TARİHİ</th>
+                        <th>GÜN SAYISI</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0" style="color: black">
+                    @foreach (var item in Model)
+                    {
+                        <tr name="@item.Id">
+                            <td>
+                                @if (item.Gender == Gender.Erkek)
+                                {
+                                    int permissionTypeValue = Convert.ToInt32(item.PermissionType);
+                                    string enumName = Enum.GetName(typeof(PermissionTypeMale), permissionTypeValue);
+                                    @enumName
+                                }
+                                else
+                                {
+                                    int permissionTypeValue = Convert.ToInt32(item.PermissionType);
+                                    string enumName = Enum.GetName(typeof(PermissionTypeFemale), permissionTypeValue);
+                                    @enumName
+                                }
+                            </td>
+                            <td> @item.StartDate.Value.ToString("dd/MM/yyyy") </td>
+                            <td> @item.EndDate.Value.ToString("dd/MM/yyyy") </td>
+                            <td> @item.CountOfDay </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script src="~/js/rejectedApprovals.js" type="application/ecmascript"></script>
+}

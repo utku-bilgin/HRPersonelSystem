@@ -1,0 +1,164 @@
+﻿@model CreateEmployeeDTO
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> Yeni Personel Oluştur </span>
+    </h4>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <form asp-area="Employee" asp-controller="Employee" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <!-- Account -->
+                    <hr class="my-0">
+                    <div class="card-body">
+
+                        <div class="mb-3 col-md-6">
+
+                            <label for="defaultFormControlInput" class="form-label"></label>
+                            <div class="button-wrapper">
+                                <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                    <i class="bx bx-upload d-block d-sm-none"></i>
+                                    <input name="photo" type="file" accept="image/*" class="formaccount-file-input" id="defaultFormControlInput" aria-describedby="defaultFormControlHelp">
+                                </label>
+
+                        </div>
+                        </div>
+
+
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="row">
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="FirstName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İSİM </label>
+                                <input asp-for="FirstName" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="MiddleName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İKİNCİ İSİM </label>
+                                <input asp-for="MiddleName" class="form-control" type="text" style="background-color: #EEE9DA;">
+                            </div>
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="LastName" class="form-label" style="color: black"> <i class='bx bx-child'></i> SOYİSİM </label>
+                                <input asp-for="LastName" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="SecondLastName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İKİNCİ SOYİSİM </label>
+                                <input asp-for="SecondLastName" class="form-control" type="text" style="background-color: #EEE9DA;">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Gender" class="form-label" style="color: black">Cinsiyet</label>
+                                <div>
+                                    @foreach (var genderOption in Enum.GetValues(typeof(Gender)))
+                                    {
+                                        <label>
+                                            <input type="radio" asp-for="Gender" value="@genderOption" />
+                                            @genderOption
+                                        </label>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="BirthDate" class="form-label" style="color: black"> <i class='bx bx-child'></i> DOĞUM TARİHİ </label>
+                                <input asp-for="BirthDate" class="form-control" type="date" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="BirthPlace" class="form-label" style="color: black"> <i class='bx bx-child'></i> DOĞUM YERİ </label>
+                                <input asp-for="BirthPlace" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="DateOfHire" class="form-label" style="color: black"> <i class='bx bx-child'></i> İŞE GİRİŞ TARİHİ </label>
+                                <input asp-for="DateOfHire" class="form-control" type="date" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+
+                            
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="TCNumber" class="form-label" style="color: black"> <i class='bx bx-child'></i> TC KİMLİK NUMARASI </label>
+                                <input asp-for="TCNumber" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="Department" class="form-label" style="color: black"> <i class='bx bx-child'></i> DEPARTMANI </label>
+                                <input asp-for="Department" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="Job" class="form-label" style="color: black"> <i class='bx bx-child'></i> MESLEK </label>
+                                <input asp-for="Job" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Salary" class="form-label" style="color: black"> <i class='bx bxs-id-card'></i> MAAŞ </label>
+                                <input asp-for="Salary" class="form-control" type="number" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="CompanyName" class="form-label" style="color: black"> <i class='bx bx-child'></i> ŞİRKET İSMİ </label>
+                                <select asp-for="CompanyName" class="form-select" style="background-color: #EEE9DA;">
+                                    <option value="BilgeAdam Teknoloji">BilgeAdam Teknoloji</option>
+                                    <option value="Dijital Teknoloji">Dijital Teknoloji</option>
+                                </select>
+                            </div>
+
+                           @*  <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="CompanyName" class="form-label" style="color: black"> <i class='bx bx-child'></i> ŞİRKET İSMİ </label>
+                                <input asp-for="CompanyName" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                            </div> *@
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Phone" class="form-label" style="color: black"> <i class='bx bx-phone'></i> TELEFON NUMARASI </label>
+                                <input asp-for="Phone" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                            </div>
+                           @*  <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="IsActive" class="form-label" style="color: black"> <i class='bx bx-child'></i> AKTİFLİK DURUMU </label>
+                                <input asp-for="IsActive" class="form-check-input" type="checkbox" style="background-color: #EEE9DA;">
+                            </div> *@
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Address" class="form-label" style="color: black"> <i class='bx bxs-id-card'></i> ADRES </label>
+                                <textarea asp-for="Address" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary me-2"> Oluştur </button>
+                        </div>
+                        <style>
+                            /* Butonun arka plan rengini ve metin rengini belirleyin */
+                            .btn.btn-primary {
+                                background-color: #B9B4C7;
+                                color: #000000;
+                                transition: background-color 0.3s, color 0.3s;
+                                border: 2px solid #7D6E83;
+                            }
+
+                                /* Butonun hover efekti */
+                                .btn.btn-primary:hover {
+                                    background-color: #7D6E83;
+                                    color: #000000;
+                                    border: 2px solid #7D6E83;
+                                }
+
+                            .card.mb-4 {
+                                background-color: #EEE9DA;
+                                color: #000000;
+                            }
+                        </style>
+                    </div>
+                    <!-- /Account -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

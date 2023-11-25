@@ -1,0 +1,252 @@
+﻿@using HRPersonnelSystem.UI.Areas.Employee.Models.Enums;
+@using HRPersonnelSystem.UI.Areas.CompanyDirector.Models.CompanyDirectorDTOs
+@model CreateCompanyDirectorDTO
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> Yönetici Oluştur </span>
+    </h4>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <form asp-area="Admin" asp-controller="CompanyDirectorCreate" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <!-- Account -->
+                    <hr class="my-0">
+                    <div class="card-body">
+                        
+                        <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-6">
+                                <label for="photo" class="form-label" style="color: black">Profil Fotoğrafı</label>
+                                <div class="button-wrapper">
+                                    <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                        <i class="bx bx-upload d-block d-sm-none"></i>
+                                        <input  name="photo" type="file" accept="image/*" class="formaccount-file-input" id="photo" aria-describedby="defaultFormControlHelp" onchange="previewImage(this)">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" style="color: black"></label>
+                                <div id="imagePreview">
+                                    <!-- Burada yüklenen fotoğrafın önizlemesi gösterilecek -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+
+
+                        <div class="row">
+
+
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="FirstName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İSİM </label>
+                                <input asp-for="FirstName" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="FirstName" class="text-danger" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="MiddleName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İKİNCİ İSİM </label>
+                                <input asp-for="MiddleName" class="form-control" type="text" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="MiddleName" class="text-danger" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="LastName" class="form-label" style="color: black"> <i class='bx bx-child'></i> SOYİSİM </label>
+                                <input asp-for="LastName" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="LastName" class="text-danger" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="SecondLastName" class="form-label" style="color: black"> <i class='bx bx-child'></i> İKİNCİ SOYİSİM </label>
+                                <input asp-for="SecondLastName" class="form-control" type="text" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="SecondLastName" class="text-danger" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Gender" class="form-label" style="color: black">Cinsiyet</label>
+                                <div>
+                                    @foreach (var genderOption in Enum.GetValues(typeof(Gender)))
+                                    {
+                                        <label>
+                                            <input type="radio" asp-for="Gender" value="@genderOption" />
+                                            @genderOption
+                                        </label>
+                                    }
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="BirthDate" class="form-label" style="color: black"> <i class='bx bx-child'></i> DOĞUM TARİHİ </label>
+                                <input asp-for="BirthDate" class="form-control" type="date" autofocus="" style="background-color: #EEE9DA;" min="1930-01-01" id="maxBirthDate">
+                                <span asp-validation-for="BirthDate" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="BirthPlace" class="form-label" style="color: black"> <i class='bx bx-child'></i> DOĞUM YERİ</label>
+                                <input asp-for="BirthPlace" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="BirthPlace" class="text-danger" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="DateOfHire" class="form-label" style="color: black"> <i class='bx bx-child'></i> İŞE BAŞLAMA TARİHİ </label>
+                                <input asp-for="DateOfHire" class="form-control" type="date" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="DateOfHire" class="text-danger" class="text-danger"></span>
+                            </div>
+                           
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="TCNumber" class="form-label" style="color: black"> <i class='bx bx-child'></i> TC KİMLİK NUMARASI </label>
+                                <input asp-for="TCNumber" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="TCNumber" class="text-danger" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="CompanyName" class="form-label" style="color: black"> <i class='bx bx-child'></i> ŞİRKET İSMİ </label>
+                                <select asp-for="CompanyName" class="form-select" style="background-color: #EEE9DA;">
+                                    <option value="BilgeAdam Teknoloji">BilgeAdam Teknoloji</option>
+                                    <option value="Dijital Teknoloji">Dijital Teknoloji</option>
+                                </select>
+                                <span asp-validation-for="CompanyName" class="text-danger" class="text-danger"></span>
+                            </div>
+                            
+
+
+                            @* <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="CompanyName" class="form-label" style="color: black"> <i class='bx bx-child'></i> ŞİRKET İSMİ </label>
+                            <input asp-for="CompanyName" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                            </div> *@
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="Job" class="form-label" style="color: black"> <i class='bx bx-child'></i> MESLEK </label>
+                                <input asp-for="Job" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="Job" class="text-danger" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="Departman" class="form-label" style="color: black"> <i class='bx bx-child'></i> DEPARTMANI </label>
+                                <select asp-for="Departman" class="form-control" style="background-color: #EEE9DA;">
+                                    <option value="">-- Departman Seçiniz --</option>
+                                    <option value="Yazılım Geliştirme Departmanı">Yazılım Geliştirme Departmanı</option>
+                                    <option value="Ürün Yönetimi Departmanı">Ürün Yönetimi Departmanı</option>
+                                    <option value="Müşteri Destek ve Hizmet Departmanı">Müşteri Destek ve Hizmet Departmanı</option>
+                                    <option value="İnsan Kaynakları (IK) Departmanı">İnsan Kaynakları (IK) Departmanı</option>
+                                    <option value="Yazılım Mimarlık Departmanı">Yazılım Mimarlık Departmanı</option>
+                                </select>
+                                <span asp-validation-for="Departman" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Salary" class="form-label" style="color: black"> <i class='bx bxs-id-card'></i> MAAŞ </label>
+                                <input asp-for="Salary" class="form-control" type="number" autofocus="" min="0" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="Salary" class="text-danger"></span>
+                            </div>
+
+
+
+
+
+                            @*  <div class="mb-3 col-md-6">
+                            <label asp-for="Email" class="form-label"> <i class='bx bx-envelope'></i> EMAİL </label>
+                            <input asp-for="Email" class="form-control" type="email" autofocus="" style="background-color: #EEE9DA;">
+                            </div> *@
+
+
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Phone" class="form-label" style="color: black"> <i class='bx bx-phone'></i> TELEFON NUMARASI </label>
+                                <input asp-for="Phone" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="CompanyAddress" class="form-label" style="color: black"> <i class='bx bxs-id-card'></i> ADRES </label><textarea asp-for="CompanyAddress" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;"></textarea>
+                                <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary me-2"> Oluştur </button>
+                        </div>
+                        <style>
+                            .card {
+                                background: linear-gradient(to right, #E4E4D0, #EEE9DA, #E4E4D0);
+                                color: #000000;
+                            }
+
+                            button.btn.btn-primary {
+                                background-color: #94A684;
+                                color: #000000;
+                                transition: background-color 0.3s, color 0.3s;
+                                border: 2px solid #94A684;
+                            }
+
+                                /* Oluştur butonunun hover efekti */
+                                button.btn.btn-primary:hover {
+                                    background-color: #AEC3AE; /* Hover rengi değiştirildi */
+                                    color: #000000;
+                                    border: 2px solid #94A684;
+                                }
+                         
+                        </style>
+
+                        <script>
+
+                            function previewImage(input) {
+                                var imagePreview = document.getElementById("imagePreview");
+
+                                if (input.files && input.files[0]) {
+                                    var reader = new FileReader();
+
+                                    reader.onload = function (e) {
+                                        var img = new Image();
+                                        img.src = e.target.result;
+                                        img.onload = function () {
+                                            var canvas = document.createElement("canvas");
+                                            var ctx = canvas.getContext("2d");
+                                            canvas.width = 100;
+                                            canvas.height = 100;
+                                            ctx.drawImage(img, 0, 0, 100, 100);
+                                            img.src = canvas.toDataURL("image/jpeg");
+                                            img.classList.add("img-thumbnail");
+                                            imagePreview.innerHTML = "";
+                                            imagePreview.appendChild(img);
+                                        };
+                                    };
+
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                                else {
+                                    imagePreview.innerHTML = "Fotoğraf seçilmedi.";
+                                }
+                            }
+
+                            // Şu anın yılını al
+                            var currentYear = new Date().getFullYear();
+                            // input elementini seç
+                            var birthDateInput = document.getElementById("maxBirthDate");
+                            // max değerini ayarla (şu anın yılına)
+                            birthDateInput.max = currentYear + "-12-31";
+                        </script>
+                    </div>
+                    <!-- /Account -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

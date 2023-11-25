@@ -1,0 +1,99 @@
+﻿@model PermissionEntityDTO
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <style>
+        .btn.btn-danger {
+            background-color: #6096B4;
+            color: black; 
+            transition: background-color 0.3s; 
+            border: none;
+           
+            
+        }
+
+            .btn.btn-danger:hover {
+                background-color: red; /* Dokunulduğunda arka plan rengini kırmızı yap */
+            }
+
+        /* Butonun arka plan rengini ve metin rengini belirleyin */
+        .btn.btn-primary {
+            background-color: #6096B4;
+            color: #000000;
+            transition: background-color 0.3s, color 0.3s;
+            border: 2px solid #6096B4;
+        }
+
+            /* Butonun hover efekti */
+            .btn.btn-primary:hover {
+                background-color: #93BFCF;
+                color: #000000;
+                border: 2px solid #6096B4;
+            }
+
+        .card {
+            background: linear-gradient(to right, #93BFCF, #A6D0DD, #93BFCF);
+            color: #000000;
+        }
+    </style>
+    <div style="height:80px;"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+
+                <form asp-area="Employee" asp-controller="Permission" asp-action="Delete" method="post" enctype="multipart/form-data">
+
+                    <h4 class="card-header"> <i class='bx bxs-user-circle'></i> @Model.PermissionType isimli izin talebini silmek istediğinizden emin misiniz? </h4>
+
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-danger me-2"> İzin Talebini Sil </button>
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <hr class="my-0">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="PermissionType" class="form-label"> <i class='bx bx-child'></i> İZİN TİPİ </label>
+                                <input asp-for="PermissionType" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="RequestDate" class="form-label"> <i class='bx bx-child'></i> OLUŞTURULMA TARİHİ </label>
+                                <input asp-for="RequestDate" class="form-control" type="date" autofocus="" style="background-color: #EEE9DA;"  disabled>
+                            </div>
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="StartDate" class="form-label"> <i class='bx bx-child'></i> BAŞLANGIÇ TARİHİ </label>
+                                <input asp-for="StartDate" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="EndDate" class="form-label"> <i class='bx bx-child'></i> BİTİŞ TARİHİ </label>
+                                <input asp-for="EndDate" class="form-control" type="date" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="CountOfDay" class="form-label"> <i class='bx bx-child'></i> GÜN SAYISI </label>
+                                <input asp-for="CountOfDay" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="ApprovalStatus" class="form-label"> <i class='bx bx-child'></i> ONAY DURUMU </label>
+                                <input asp-for="ApprovalStatus" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <a asp-area="Employee" asp-controller="Permission" asp-action="UncertainApprovals" type="submit" class="btn btn-primary me-2"> Geri Dön </a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

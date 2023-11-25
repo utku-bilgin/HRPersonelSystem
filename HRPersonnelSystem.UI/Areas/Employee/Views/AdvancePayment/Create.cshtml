@@ -1,0 +1,142 @@
+﻿@model AdvancePaymentDTO
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+	<h4 class="fw-bold py-3 mb-4">
+		<span class="text-muted fw-light"> Avans Talebi Oluştur </span>
+	</h4>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card mb-4">
+				<form asp-area="Employee" asp-controller="AdvancePayment" asp-action="Create" method="post" enctype="multipart/form-data">
+					<!-- Account -->
+					<hr class="my-0">
+					<div class="card-body">
+
+						<div asp-validation-summary="All" class="text-danger"></div>
+
+						<div class="row">
+
+							
+
+							<div class="mb-3 col-md-6">
+
+								<label asp-for="AdvancePaymentType" class="form-label" style="color: black">Avans Ödeme Türü</label>
+								<select asp-for="AdvancePaymentType" class="form-control" asp-items="@Html.GetEnumSelectList<AdvancePaymentType>().OrderBy(x=>x.Text);" id="payment" autofocus="" style="background-color: #EEE9DA;"></select>
+								<span asp-validation-for="AdvancePaymentType"></span>
+
+
+							</div>
+
+							<div class="mb-3 col-md-6">
+								<label asp-for="Explain" class="form-label" style="color: black"> <i class='bx bxs-id-card'></i> Açıklama </label>
+								<textarea asp-for="Explain" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;"></textarea>
+							</div>
+
+
+							<div class="mb-3 col-md-6">
+								<label asp-for="Amount" class="form-label" style="color: black">Tutar</label>
+								<input asp-for="Amount" class="form-control" type="number" autofocus="" style="background-color: #EEE9DA;">
+								<span asp-validation-for="Amount"></span>
+							</div>
+
+
+@* 							<div class="mb-3 col-md-6">
+
+								<label asp-for="Photo" for="defaultFormControlInput" class="form-label"></label>
+								<input asp-for="Photo" type="file" accept="image/*" class="form-control mb-3" id="defaultFormControlInput" aria-describedby="defaultFormControlHelp">
+
+							</div> *@
+
+							
+							<div class="mb-3 col-md-6">
+
+								<label asp-for="CurrencyUnit" class="form-label" style="color: black">Para Birimi</label>
+								<select asp-for="CurrencyUnit" class="form-control" asp-items="@Html.GetEnumSelectList<CurrencyUnit>().OrderBy(x=>x.Text);" id="unit" autofocus="" style="background-color: #EEE9DA;"></select>
+								<span asp-validation-for="CurrencyUnit"></span>
+
+
+							</div>
+						</div>
+
+						<div class="mt-2">
+							<button type="submit" class="btn btn-primary me-2"> Avans Talebini Oluştur </button>
+						</div>
+
+						@* <div class="mt-2">
+						<a asp-area="Employee" asp-controller="Permission" asp-action="Index" type="submit" class="btn btn-primary me-2"> Ana Sayfaya Dön </a>
+						</div> *@
+
+					</div>
+					<!-- /Account -->
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+
+	/* Butonun arka plan rengini ve metin rengini belirleyin */
+	.btn.btn-primary {
+		background-color: #6096B4;
+		color: #000000;
+		transition: background-color 0.3s, color 0.3s;
+		border: 2px solid #6096B4;
+	}
+
+		/* Butonun hover efekti */
+		.btn.btn-primary:hover {
+			background-color: #93BFCF;
+			color: #000000;
+			border: 2px solid #6096B4;
+		}
+
+	.card.mb-4 {
+		background: linear-gradient(to right, #93BFCF, #A6D0DD, #93BFCF);
+		color: #000000;
+	}
+
+</style>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sayfa yüklendiğinde, varsayılan olarak yıllık izin türünü seç
+            var permissionTypeDropdown = document.getElementById('payment');
+            permissionTypeDropdown.value = '0'; // 'Yillik' enum değerine göre belirlenmelidir
+
+
+
+            // Gün sayısını güncelle
+            updateUnit();
+        });
+
+
+
+        // JavaScript fonksiyonu: İzin türü seçildiğinde gün sayısını güncelle
+        function updateUnit() {
+            var permissionTypeDropdown = document.getElementById('payment');
+            var countOfDayInput = document.getElementById('unit');
+
+
+
+            // Seçilen izin türüne göre gün sayısını güncelle
+			switch (permissionTypeDropdown.value) {
+                case '0':
+					countOfDayInput.disabled = false;
+                    break;
+                case '1':
+					countOfDayInput.value = '0';
+					countOfDayInput.disabled = true;
+                    break;
+            }
+        }
+
+
+
+        // İzin türü dropdown'unun değişiklik olayını dinle
+        document.getElementById('payment').addEventListener('change', updateUnit);
+    </script>
+}
+
+

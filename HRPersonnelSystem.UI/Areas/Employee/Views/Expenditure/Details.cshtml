@@ -1,0 +1,88 @@
+﻿@model EmployeeExpenditureDTO
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <style>
+
+        .btn.btn-primary {
+            background-color: #6096B4;
+            color: #000000;
+            transition: background-color 0.3s, color 0.3s;
+            border: 2px solid #6096B4;
+        }
+
+            /* Butonun hover efekti */
+            .btn.btn-primary:hover {
+                background-color: #93BFCF;
+                color: #000000;
+                border: 2px solid #6096B4;
+            }
+
+        .card {
+            background: linear-gradient(to right, #93BFCF, #A6D0DD, #93BFCF);
+            color: #000000;
+        }
+    </style>
+
+    <div style="height:80px;"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+
+                <h5 class="card-header"> <i class='bx bx-info-circle'></i> Detaylar</h5>
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <div class="d-flex justify-content-start">
+                        </div>
+                        <img src="~/images/@Model.ImagePath" class="border border-dark border-2 rounded" height="300px" width="300px" id="uploadedAvatar">
+                    </div>
+                </div>
+
+
+                <hr class="my-0">
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="mb-3 col-md-6 mt-3">
+                            <label asp-for="ExpenditureType" class="form-label" style="color: black"> <i class='bx bx-child'></i> Harcama Türü </label>
+                            <input asp-for="ExpenditureType" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 mt-3">
+                            <label asp-for="Amount" class="form-label" style="color: black"> <i class='bx bx-child'></i> Tutar </label>
+                            <input asp-for="Amount" class="form-control" type="text" placeholder="" autofocus="" style="background-color: #EEE9DA;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="CurrencyUnit" class="form-label" style="color: black"> <i class='bx bx-child'></i> Para Birimi </label>
+                            <input asp-for="CurrencyUnit" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                        </div>
+
+                        
+                        <div class="mb-3 col-md-6 mt-3">
+                            <label asp-for="RequestDate" class="form-label" style="color: black"> <i class='bx bx-child'></i> Talep Tarihi </label>
+                            <input asp-for="RequestDate" class="form-control" type="date" placeholder="" autofocus="" style="background-color: #EEE9DA;" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="ApprovalStatus" class="form-label" style="color: black"> <i class='bx bx-child'></i> Onay Durumu </label>
+                            <input asp-for="ApprovalStatus" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;" disabled>
+                        </div>
+
+                        <div class="mt-2">
+                            <a asp-area="Employee" asp-controller="Employee" asp-action="Index" type="submit" class="btn btn-primary me-2"> Ana Sayfaya Dön </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

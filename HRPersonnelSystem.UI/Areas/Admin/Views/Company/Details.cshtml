@@ -1,0 +1,129 @@
+﻿@model CompanyDTO
+
+<style>
+    /* Butonun arka plan rengini ve metin rengini belirleyin */
+    .btn.btn-primary {
+        background-color: #94A684;
+        color: #000000;
+        transition: background-color 0.3s, color 0.3s;
+        border: 2px solid #AEC3AE;
+    }
+
+
+
+    .card.mb-4 {
+        background: linear-gradient(to right, #E4E4D0, #EEE9DA, #E4E4D0);
+        color: #000000;
+    }
+</style>
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">Şirket Ayarları /</span> Şirket Detayları
+    </h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+
+                <h5 class="card-header"> @Model.CompanyName İsimli Şirketin Detay Bilgileri </h5>
+
+                <input type="hidden" asp-for="Id" />
+
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <div>
+                            <img src="~/images/@Model.ImagePath" class="height=" 100px" width="100px" id="uploadedAvatar">
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="my-0">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="mb-3 col-md-6 mt-3">
+                            <label asp-for="CompanyName" class="form-label"> ADI </label>
+                            <input asp-for="CompanyName" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="CompanyTitle" class="form-label"> UNVANI </label>
+                            <input asp-for="CompanyTitle" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="YearOfEstablishment" class="form-label"> KURULUŞ TARİHİ </label>
+                            <input asp-for="YearOfEstablishment" class="form-control" type="date" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="MersisNumber" class="form-label"> MERSİS NUMARASI </label>
+                            <input asp-for="MersisNumber" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="TaxNumber" class="form-label"> VERGİ NUMARASI </label>
+                            <input asp-for="TaxNumber" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="TaxOffice" class="form-label"> VERGİ DAİRESİ </label>
+                            <input asp-for="TaxOffice" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="Email" class="form-label"> EMAİL </label>
+                            <input asp-for="Email" class="form-control" type="email" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="Phone" class="form-label"> TELEFON NUMARASI </label>
+                            <input asp-for="Phone" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="Address" class="form-label"> ADRES </label>
+                            <textarea asp-for="Address" class="form-control" type="text" autofocus="" disabled></textarea>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="NumberOfEmployees" class="form-label"> ÇALIŞAN SAYISI </label>
+                            <input asp-for="NumberOfEmployees" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                         <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="ContractStartDate" class="form-label"> SÖZLEŞME BAŞLANGIÇ TARİHİ </label>
+                            <input asp-for="ContractStartDate" class="form-control" type="date" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="ContractEndDate" class="form-label"> SÖZLEŞME BİTİŞ TARİHİ </label>
+                            <input asp-for="ContractEndDate" class="form-control" type="date" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="IsActive" class="form-label"> AKTİFLİK DURUMU </label>
+                            @if (Model.IsActive)
+                            {
+                                <input asp-for="IsActive" class="form-control" type="text" value="Aktif" disabled>
+                            }
+                            else
+                            {
+                                <input asp-for="IsActive" class="form-control" type="text" value="Aktif Değil" disabled>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+
+                @* <div class="mt-2">
+                <a asp-area="Admin" asp-controller="Company" asp-action="Index" type="submit" class="btn btn-primary me-2"> Ana Sayfaya Dön </a>
+                </div> *@
+
+            </div>
+        </div>
+    </div>
+</div>

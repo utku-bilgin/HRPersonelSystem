@@ -1,0 +1,216 @@
+﻿@model IEnumerable<ExpenditureDTO>
+
+
+<style>
+
+    /* Butonun arka plan rengini ve metin rengini belirleyin */
+    .btn.btn-primary {
+        background-color: #B9B4C7;
+        color: #000000;
+        transition: background-color 0.3s, color 0.3s;
+        border: 2px solid #7D6E83;
+    }
+
+        /* Butonun hover efekti */
+        .btn.btn-primary:hover {
+            background-color: #7D6E83;
+            color: #000000;
+            border: 2px solid #7D6E83;
+        }
+
+    .card {
+        background-color: #B9B4C7;
+        color: #000000;
+    }
+
+    .bolum-container {
+        display: flex;
+    }
+
+    .bolum {
+        flex: 1;
+        padding: 20px;
+        border: 1px solid #ccc;
+        text-align: center;
+        margin-top: 40px;
+        border: none;
+    }
+
+    .butom {
+        color:darkviolet;
+    }
+
+    .buyutec {
+        position: relative;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        transition: all .3s ease-in;
+        -moz-transition: all .3s ease-in;
+        -webkit-transition: all .3s ease-in;
+        -ms-transition: all .2s ease-in;
+    }
+
+        .buyutec:hover {
+            z-index: 4;
+            -webkit-transform: scale(1.5);
+            -ms-transform: scale(1.5);
+            -moz-transform: scale(1.5);
+            transform: scale(1.5);
+        }
+
+  
+</style>
+
+
+
+<head>
+    <link rel="stylesheet" href="~/css/StyleSheet1.css" />
+</head>
+<h1></h1>
+<h1></h1>
+<div class="container-xxl">
+    <h1></h1>
+    <h1></h1>
+    <h3>Harcama Talepleri</h3>
+    <h1></h1>
+
+    <div class="tabPanel-widget">
+        <label for="tab-1" tabindex="0"></label>
+        <input id="tab-1" type="radio" name="tabs" checked="true" aria-hidden="true">
+        <h2>Bekleyen</h2>
+        <div>
+            <!-- Birinci Bölüm -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+                
+                <div class="card" style="width: auto;">
+                    <div class="table-responsive text-nowrap m-3">
+                        <table class="table" id="approvedAdvance">
+                            <thead>
+                                <tr>
+                                    <th>İSİM</th>
+                                    <th>SOYİSİM</th>
+                                    <th>DEPARTMAN</th>
+                                    <th>HARCAMA TÜRÜ</th>
+                                    <th>TUTAR</th>
+                                    <th>PARA BİRİMİ</th>
+                                    <th>DETAYLAR</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="table-border-bottom-0" style="color: black">
+
+                                @{
+                                    var onayBekleyenHarcamalar = Model.Where(x => x.ApprovalStatus == ApprovalStatus.Bekleyen);
+                                }
+                                @foreach (var item in onayBekleyenHarcamalar)
+                                {
+                                    <tr name="@item.Id">
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Department</td>
+                                        <td>@item.ExpenditureType</td>
+                                        <td>@item.Amount</td>
+                                        <td>@item.CurrencyUnit</td>
+                                        <td>
+
+                                            <a asp-area="CompanyDirector" asp-controller="Operation" asp-action="ExpenditureDetails" asp-route-id="@item.Id"> <i class='bx bxs-file-export buyutec butom'></i></a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <label for="tab-2" tabindex="0"></label>
+        <input id="tab-2" type="radio" name="tabs" aria-hidden="true">
+        <h2>Onaylanan</h2>
+        <div>
+
+            <!-- İkinci Bölüm -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+                <div class="card">
+                    <div class="table-responsive text-nowrap m-3">
+
+                        <table class="table" id="approvedAdvance">
+                            <thead>
+                                <tr>
+                                    <th>İSİM</th>
+                                    <th>SOYİSİM</th>
+                                    <th>DEPARTMAN</th>
+                                    <th>HARCAMA TÜRÜ</th>
+                                    <th>TUTAR</th>
+                                    <th>PARA BİRİMİ</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="table-border-bottom-0" style="color: black">
+                                @{
+                                    var onaylananHarcamalar = Model.Where(x => x.ApprovalStatus == ApprovalStatus.Onaylandı);
+                                }
+                                @foreach (var item in onaylananHarcamalar)
+                                {
+                                    <tr name="@item.Id">
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Department</td>
+                                        <td>@item.ExpenditureType</td>
+                                        <td>@item.Amount</td>
+                                        <td>@item.CurrencyUnit</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <label for="tab-3" tabindex="0"></label>
+        <input id="tab-3" type="radio" name="tabs" aria-hidden="true">
+        <h2>Reddedilen</h2>
+        <div>
+            <!-- Üçüncü Bölüm -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+                <div class="card">
+                    <div class="table-responsive text-nowrap m-3">
+                        <table class="table" id="approvedAdvance">
+                            <thead>
+                                <tr>
+                                    <th>İSİM</th>
+                                    <th>SOYİSİM</th>
+                                    <th>DEPARTMAN</th>
+                                    <th>HARCAMA TÜRÜ</th>
+                                    <th>TUTAR</th>
+                                    <th>PARA BİRİMİ</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0" style="color: black">
+
+                                @{
+                                    var reddedilenHarcamalar = Model.Where(x => x.ApprovalStatus == ApprovalStatus.Reddedildi);
+                                }
+                                @foreach (var item in reddedilenHarcamalar)
+                                {
+                                    <tr name="@item.Id">
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Department</td>
+                                        <td>@item.ExpenditureType</td>
+                                        <td>@item.Amount</td>
+                                        <td>@item.CurrencyUnit</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

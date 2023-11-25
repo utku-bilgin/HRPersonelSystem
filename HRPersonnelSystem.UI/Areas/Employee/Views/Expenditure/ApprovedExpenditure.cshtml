@@ -1,0 +1,74 @@
+﻿@model List<EmployeeExpenditureDTO>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <style>
+
+        .btn.btn-primary {
+            background-color: #6096B4;
+            color: #000000;
+            transition: background-color 0.3s, color 0.3s;
+            border: 2px solid #6096B4;
+        }
+
+            /* Butonun hover efekti */
+            .btn.btn-primary:hover {
+                background-color: #93BFCF;
+                color: #000000;
+                border: 2px solid #6096B4;
+            }
+
+        .card {
+            background: linear-gradient(to right, #93BFCF, #A6D0DD, #93BFCF);
+            color: #000000;
+        }
+
+        #rejectedExpendituresTable thead th {
+            color: black;
+        }
+    </style>
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> Onaylanan Harcamalar </span>
+    </h4>
+    <div class="card">
+        <div class="table-responsive text-nowrap m-3">
+
+            <table class="table table-bordered" id="approvedApprovalsTable" width="100%" cellspacing="0">
+
+                <thead>
+                    <tr>
+                        <th>HARCAMA TÜRÜ</th>
+                        <th>TUTAR</th>
+                        <th>PARA BİRİMİ</th>
+                        <th>TALEP TARİHİ</th>
+                        <th>ONAY DURUMU</th>
+                        <th>YANIT TARİHİ</th>
+                        <th>DOSYA</th>
+                      
+                    </tr>
+                </thead>
+
+                <tbody class="table-border-bottom-0" style="color: black">
+
+                    @foreach (var item in Model)
+                    {
+                        <tr name="@item.Id">
+                            <td>@item.ExpenditureType</td>
+                            <td>@item.Amount</td>
+                            <td>@item.CurrencyUnit</td>
+                            <td>@item.RequestDate.ToString("dd/MM/yyyy")</td>
+                            <td>@item.ApprovalStatus</td>
+                            <td>@item.DateOfReply.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <div>
+                                    <a class="btn btn-info btn-sm" asp-area="Employee" asp-controller="Expenditure" asp-action="Details" asp-route-id="@item.Id"><i class='bx bxs-file-export'></i></a>
+                                </div>
+                            </td>                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/approvedApprovals.js" type="application/ecmascript"></script>
+}

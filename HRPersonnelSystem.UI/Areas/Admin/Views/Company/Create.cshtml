@@ -1,0 +1,168 @@
+﻿@model CreateCompanyDTO
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> Şirket Oluştur </span>
+    </h4>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <form asp-area="Admin" asp-controller="Company" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <!-- Account -->
+                    <hr class="my-0">
+                    <div class="card-body">
+                        
+                        <div class="mb-3 col-md-6">
+
+                        <label for="defaultFormControlInput" class="form-label"></label>
+                        <div class="button-wrapper">
+                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                        <i class="bx bx-upload d-block d-sm-none"></i>
+                        <input name="photo" type="file" accept="image/*" class="formaccount-file-input" id="defaultFormControlInput" aria-describedby="defaultFormControlHelp">
+                        </label>
+
+                        </div>
+                        </div>
+                       
+
+                       
+
+                        <div class="row">
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="CompanyName" class="form-label" style="color: black"> <i class='bx bx-child'></i> ŞİRKET ADI </label>
+                                <input asp-for="CompanyName" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="CompanyName" class="text-danger" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="CompanyTitle" class="form-label" style="color: black"> <i class='bx bx-child'></i> ŞİRKET ÜNVANI </label>
+                                <select asp-for="CompanyTitle" class="form-select" style="background-color: #EEE9DA;">
+                                    <option value="">Lütfen bir ünvan seçin</option>
+                                    <option value="Ltd. Şti.">Limited Şirket (Ltd. Şti.)</option>
+                                    <option value="A.Ş.">Anonim Şirket (A.Ş.)</option>
+                                    <option value="Kolektif Şirket">Kolektif Şirket</option>
+                                    <option value="Komandit Şirket">Komandit Şirket</option>
+                                    <!-- Diğer ünvanlar buraya eklenebilir -->
+                                </select>
+                                <span asp-validation-for="CompanyTitle" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="MersisNumber" class="form-label" style="color: black"> <i class='bx bx-child'></i> MERSİS NUMARASI </label>
+                                <input asp-for="MersisNumber" class="form-control" type="number" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="MersisNumber" class="text-danger" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="TaxOffice" class="form-label" style="color: black"> <i class='bx bx-child'></i> VERGİ DAİRESİ </label>
+                                <input asp-for="TaxOffice" class="form-control" type="text" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="TaxOffice" class="text-danger" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="TaxNumber" class="form-label" style="color: black"> <i class='bx bx-child'></i> VERGİ NUMARASI </label>
+                                <input asp-for="TaxNumber" class="form-control" type="number" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="TaxNumber" class="text-danger" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Phone" class="form-label" style="color: black"> <i class='bx bx-phone'></i> TELEFON NUMARASI </label>
+                                <input asp-for="Phone" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="Phone" class="text-danger" class="text-danger"></span>
+                            </div>
+                           
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Email" class="form-label" style="color: black"> <i class='bx bx-envelope'></i> EMAİL </label>
+                                <input asp-for="Email" class="form-control" type="email" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="Email" class="text-danger" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6 mt-3">
+                                <label asp-for="NumberOfEmployees" class="form-label" style="color: black"> <i class='bx bx-child'></i> ÇALIŞAN SAYISI </label>
+                                <input asp-for="NumberOfEmployees" class="form-control" type="number" style="background-color: #EEE9DA;" min="0">
+                                <span asp-validation-for="NumberOfEmployees" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="YearOfEstablishment" class="form-label" style="color: black"> <i class='bx bx-child'></i> KURULUŞ YILI </label>
+                                <input asp-for="YearOfEstablishment" class="form-control" placeholder="" type="number" min="1900" max="2080" step="1" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="YearOfEstablishment" class="text-danger" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="ContractStartDate" class="form-label" style="color: black"> <i class='bx bx-child'></i> SÖZLEŞME BAŞLANGIÇ TARİHİ </label>
+                                <input asp-for="ContractStartDate" class="form-control" placeholder="" type="date" id="startDateInput" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="ContractStartDate" class="text-danger" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6 my-3">
+                                <label asp-for="ContractEndDate" class="form-label" style="color: black"> <i class='bx bx-child'></i> SÖZLEŞME BİTİŞ TARİHİ </label>
+                                <input asp-for="ContractEndDate" class="form-control" placeholder="" type="date" id="startDateInput" autofocus="" style="background-color: #EEE9DA;">
+                                <span asp-validation-for="ContractEndDate" class="text-danger" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Address" class="form-label" style="color: black"> <i class='bx bxs-id-card'></i> ADRES </label>
+                                <textarea asp-for="Address" class="form-control" type="text" autofocus="" style="background-color: #EEE9DA;"></textarea>
+                                <span asp-validation-for="Address" class="text-danger" class="text-danger"></span>
+                            </div>
+                           
+
+
+                        </div>
+
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary me-2"> Oluştur </button>
+                        </div>
+
+
+                        <style>
+                            /* Butonun arka plan rengini ve metin rengini belirleyin */
+                            <style >
+                            /* Butonun arka plan rengini ve metin rengini belirleyin */
+                            .btn.btn-primary {
+                                background-color: #94A684;
+                                color: #000000;
+                                transition: background-color 0.3s, color 0.3s;
+                                border: 2px solid #94A684;
+                            }
+
+                            /* Butonun hover efekti */
+                            .btn.btn-primary:hover {
+                                background-color: #AEC3AE;
+                                color: #000000;
+                                border: 2px solid #94A684;
+                            }
+
+                            .card.mb-4 {
+                                background: linear-gradient(to right, #E4E4D0, #EEE9DA, #E4E4D0);
+                                color: #000000;
+                            }
+                        </style>
+
+                        <script>
+                            // input elementini seç
+                            var startDateInput = document.getElementById("startDateInput");
+                            // Tarih formatını "yyyy-MM-dd" olarak değiştir
+                            startDateInput.type = "text";
+                            startDateInput.addEventListener("input", function () {
+                                if (this.value.length === 4 || this.value.length === 7) {
+                                    this.value += "-";
+                                }
+                            });
+                        </script>
+                       
+
+
+
+
+
+
+
+                    </div>
+                    <!-- /Account -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
