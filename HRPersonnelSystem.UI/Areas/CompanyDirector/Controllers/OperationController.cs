@@ -19,7 +19,7 @@ namespace HRPersonnelSystem.UI.Areas.CompanyDirector.Controllers
         public OperationController()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("https://hrmanagementsystemapi.azurewebsites.net");
+            _httpClient.BaseAddress = new Uri("https://localhost:7085");
         }
 
         //---------------------------------- ADVANCE ---------------------------------

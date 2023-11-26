@@ -18,7 +18,7 @@ namespace HRPersonnelSystem.UI.Areas.Employee.Controllers
         {
            
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("https://hrmanagementsystemapi.azurewebsites.net");
+            _httpClient.BaseAddress = new Uri("https://localhost:7085");
             _imageHelper = imageHelper;
         }
 
